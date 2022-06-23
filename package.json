@@ -25,7 +25,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "test:noWatch": "npm run test -- --watchAll=false",
-    "lint": "eslint . --fix"
+    "lint": "eslint --fix"
   },
   "eslintConfig": {
     "extends": [
