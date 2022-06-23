@@ -4,7 +4,7 @@ import SearchContextProvider from "hoc/SearchContextProvider";
 
 const a = 22;
 const b: number = 21;
-const unused: boolean = a == b;
+let unused: boolean = a == b;
 function A() {
   if (unused) {
     console.log("it's true");
