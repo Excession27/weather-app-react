@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -14,13 +10,22 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "noImplicitAny": true,
+    "jsx": "react-jsx",
+    "rootDir": ".",
+    "baseUrl": "src/",
+    "paths": {
+      "@component/*": ["component/*"],
+      "hooks/*": ["hooks/*"],
+      "container/*": ["container/*"],
+      "@httpClient/*": ["httpClient/*"],
+      "axios": ["axios/*"],
+      "SearchContextProvider": ["hoc/SearchContextProvider"]
+    }
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }
