@@ -1,11 +1,9 @@
-import axios from "@httpClient/axiosInstance";
+import axios from "httpClient/axiosInstance";
+import { CoordsDataType } from "types";
 
-const APIkey = process.env.API_KEY;
+const key = process.env.REACT_APP_API_KEY;
 
-export const getFiveCities = (name: string): any =>
-  axios.get(process.env.DATA_URL + `direct?q=${name}&limit=5&appid=${APIkey}`);
+const data = process.env.REACT_APP_DATA_URL;
 
-export const getXCities = (name: string, limit: number): any =>
-  axios.get(
-    process.env.DATA_URL + `direct?q=${name}&limit=${limit}&appid=${APIkey}`
-  );
+export const getCityWeatherData = (coords: CoordsDataType): any =>
+  axios.get(data + `weather?lat=${coords.lat}&lon=${coords.lon}&appid=${key}`);

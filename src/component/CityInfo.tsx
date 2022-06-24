@@ -1,11 +1,31 @@
-import React from "react";
-//import { useQuery } from "react-query";
+import React, { useContext } from "react";
+import { useQuery } from "react-query";
+import { ContextDataType } from "types";
+import { SearchContext } from "hoc/SearchContextProvider";
+import { getCityWeatherData } from "api/data";
 
 const CityInfo = () => {
-  // const cityData = useQuery(["find-city", searchCity], async () => {});
+  //const { searchCity } = useContext<ContextDataType>(SearchContext);  // Postaviti pitanje za ovo
+  const { city } = useContext(SearchContext) as ContextDataType;
+
+  const { data, status } = useQuery<any>(
+    ["get-city-weather", city],
+    async () => {
+      if (city.lat) {
+        return (await getCityWeatherData(city)) ?? {};
+      }
+    }
+  );
+  const cityData = data?.data;
   return (
     <div>
-      <h1 className="city-name">City name</h1>
+      <h1 className="city-name">
+        {cityData && (
+          <>
+            {cityData?.name}, {cityData?.sys.country}
+          </>
+        )}
+      </h1>
       <div className="temperature-display">
         <img src="" alt="" />
         <p className="value"></p>
@@ -14,7 +34,7 @@ const CityInfo = () => {
           <button>F</button>
         </div>
       </div>
-      <p className="weather-desc">Sunny</p>
+      <p className="weather-desc">{cityData?.weather[0].description}</p>
       <p className="last-update">Last update as of 13:30</p>
       <div className="additional-data">
         <p className="feels">Feels like 13</p>

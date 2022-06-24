@@ -1,6 +1,18 @@
 import { Dispatch, SetStateAction } from "react";
 
 export type ContextDataType = {
-  search: string;
-  setSearch?: Dispatch<SetStateAction<string>>;
+  city: CoordsDataType;
+  setCity: Dispatch<SetStateAction<CoordsDataType>>;
+  searchCity: string;
+  setSearchCity: Dispatch<SetStateAction<string>>;
 };
+
+export type CoordsDataType = {
+  lat: string;
+  lon: string;
+};
+
+export interface ICoordsDataType {
+  city: CoordsDataType;
+  setCity: Dispatch<SetStateAction<CoordsDataType>>;
+}

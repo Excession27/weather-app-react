@@ -1,12 +1,17 @@
 import React, { createContext, useState } from "react";
-import { ContextDataType } from "types";
+import { ContextDataType, CoordsDataType, ICoordsDataType } from "types";
 
-export const SearchContext = createContext<ContextDataType>({ search: "" });
+export const SearchContext = createContext<ContextDataType | null>(null);
+// export const SearchContext = createContext<any>(null);
 
 const SearchContextProvider = ({ children }: any) => {
-  const [search, setSearch] = useState<string>("");
+  const [city, setCity] = useState<any>({});
+  const [searchCity, setSearchCity] = useState<string>("");
+
   return (
-    <SearchContext.Provider value={{ search, setSearch }}>
+    <SearchContext.Provider
+      value={{ city, setCity, searchCity, setSearchCity }}
+    >
       {children}
     </SearchContext.Provider>
   );
