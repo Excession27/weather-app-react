@@ -3,12 +3,12 @@ import { SearchContext } from "hoc/SearchContextProvider";
 import useDebounce from "hooks/useDebounce";
 import React, { useContext, useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { ContextDataType } from "types";
+import { IContextDataType, CityBaseType } from "types";
 
 const Header = () => {
   const { searchCity, setSearchCity, setCity } = useContext(
     SearchContext
-  ) as ContextDataType;
+  ) as IContextDataType;
   const [search, setSearch] = useState<string>("");
 
   const { data: citySearchData, status: searchStatus } = useQuery(
@@ -20,7 +20,7 @@ const Header = () => {
     }
   );
 
-  const debouncedSearch = useDebounce(search, 200);
+  const debouncedSearch = useDebounce(search, 500);
 
   useEffect(() => {
     setSearchCity(debouncedSearch);
@@ -29,19 +29,20 @@ const Header = () => {
   console.log(citySearchResults);
 
   return (
-    <div>
+    <div className="header">
       <div>
         <h1 className="">Are you under the weather?</h1>
       </div>
 
-      {/* <input type="text" onChange={(event) => setCity(event.target.value)} /> */}
+      {/* Search for a city */}
       <input
         type="text"
         value={search}
         onChange={(event) => setSearch(event.target.value)}
       />
+      {/* Display results and when clicked on one, clear search and set city parametars */}
       <ul>
-        {citySearchResults?.map((city: any, index: number) => (
+        {citySearchResults?.map((city: CityBaseType, index: number) => (
           <li key={index}>
             <button
               onClick={() => {

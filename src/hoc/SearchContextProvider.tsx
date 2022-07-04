@@ -1,7 +1,7 @@
 import React, { createContext, useState } from "react";
-import { ContextDataType, CoordsDataType, ICoordsDataType } from "types";
+import { IContextDataType, CoordsDataType, ICoordsDataType } from "types";
 
-export const SearchContext = createContext<ContextDataType | null>(null);
+export const SearchContext = createContext<IContextDataType | null>(null);
 // export const SearchContext = createContext<any>(null);
 
 const SearchContextProvider = ({ children }: any) => {

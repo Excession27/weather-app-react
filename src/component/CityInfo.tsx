@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { useQuery } from "react-query";
-import { ContextDataType } from "types";
+import { CityWeatherDataType, IContextDataType } from "types";
 import { SearchContext } from "hoc/SearchContextProvider";
 import { getCityWeatherData } from "api/data";
 
 const CityInfo = () => {
   //const { searchCity } = useContext<ContextDataType>(SearchContext);  // Postaviti pitanje za ovo
-  const { city } = useContext(SearchContext) as ContextDataType;
+  const { city } = useContext(SearchContext) as IContextDataType;
 
   const { data, status } = useQuery<any>(
     ["get-city-weather", city],
@@ -16,9 +16,12 @@ const CityInfo = () => {
       }
     }
   );
-  const cityData = data?.data;
+  const cityData: CityWeatherDataType = data?.data;
+  console.log(cityData);
+  // eslint-disable-next-line prefer-const
+  let tempUnit = { value: 273.1, unit: "°C" };
   return (
-    <div>
+    <div className="CityInfo">
       <h1 className="city-name">
         {cityData && (
           <>
@@ -35,16 +38,27 @@ const CityInfo = () => {
         </div>
       </div>
       <p className="weather-desc">{cityData?.weather[0].description}</p>
-      <p className="last-update">Last update as of 13:30</p>
+      <p className="last-update">
+        Last update as of{" "}
+        {new Date(cityData?.dt * 1000).toLocaleTimeString("en-gb")}
+      </p>
       <div className="additional-data">
-        <p className="feels">Feels like 13</p>
-        <div className="wind">
-          <p>Wind</p> <i>↗</i> <p>3km/h</p>
+        <p className="feels">
+          Feels like{" "}
+          {(cityData?.main.feels_like - tempUnit.value)
+            .toFixed(2)
+            .concat(tempUnit.unit)}
+        </p>
+        <div className="wind flex">
+          <p>Wind:</p> <i>↗</i> <p>{cityData?.wind.speed} m/s</p>
         </div>
-        <p className="visi">Visibility 13 km</p>
-        <p className="pressure">Barometer 1022 mb</p>
-        <p className="hum">Humidity 62%</p>
-        <p className="dew">Dew point 4°</p>
+        <p className="visi">Visibility {cityData?.visibility} km</p>
+        <p className="pressure">Barometer {cityData?.main.pressure} mb</p>
+        <p className="hum">Humidity {cityData?.main.humidity}%</p>
+        {/* <p className="dew">
+          Dew point {cityData.main.sea_level}
+          {tempUnit.unit}
+        </p> */}
       </div>
     </div>
   );
