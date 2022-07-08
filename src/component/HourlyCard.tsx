@@ -1,35 +1,25 @@
+import useWindDir from "hooks/useWindDir";
 import React, { FC } from "react";
-
-type HourlyDataType = {
-  time: string;
-  img: string;
-  temperature: number;
-  desc: string;
-  prec: string;
-  windSpeed: string;
-  windDir: string;
-};
+import { HourlyDataType } from "types";
 
 const HourlyCard: FC<HourlyDataType> = ({
   time,
   img,
   temperature,
   desc,
-  prec,
   windSpeed,
   windDir,
 }: HourlyDataType) => {
   return (
-    <div>
+    <div className="rounded-lg border border-cyan-800 border-opacity-60 pl-3">
       <img src={`http://openweathermap.org/img/wn/${img}@2x.png`} alt="" />
-      <p className="temp">{temperature}</p>
+      <p className="temp">{temperature}C</p>
       <p className="desc">{desc}</p>
-      <p className="prec">{prec}</p>
-      <p className="prec">{prec}</p>
       <div className="wind">
-        <span>{windDir}</span>
-        <span>{windSpeed}</span>
+        <span className="dir p-1">{useWindDir(windDir)}</span>
+        <span className="speed p-1">{windSpeed}m/s</span>
       </div>
+      <p>{time}</p>
     </div>
   );
 };

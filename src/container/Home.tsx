@@ -1,14 +1,14 @@
-import CityInfo from "component/CityInfo";
 import Header from "component/Header";
 import DailyList from "container/DailyList";
 //import HourlyList from "container/HourlyList";
 import React from "react";
+import WeatherDisplay from "./WeatherDisplay";
 
 const Home = () => {
   return (
     <div>
       <Header />
-      <CityInfo />
+      <WeatherDisplay />
       <DailyList />
       {/* <HourlyList /> */}
     </div>

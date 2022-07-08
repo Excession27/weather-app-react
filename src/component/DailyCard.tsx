@@ -1,25 +1,20 @@
-import React from "react";
+import dayjs from "dayjs";
+import { SearchContext } from "hoc/SearchContextProvider";
+import React, { useContext } from "react";
+import { dayHLType, IContextDataType } from "types";
 
-const DailyCard = ({
-  date,
-  img,
-  temperature,
-  desc,
-}: {
-  date: string;
-  img: string;
-  temperature: { high: number; low: number };
-  desc: string;
-}) => {
+const DailyCard = ({ dayHLData }: { dayHLData: dayHLType }) => {
+  const { setChosenDay } = useContext(SearchContext) as IContextDataType;
   return (
-    <div>
-      <p className="date">{date}</p>
-      <img src={img} alt="" />
-      <div>
-        <p>{temperature.high}°</p>
-        <p>{temperature.low}°</p>
-      </div>
-      <p>{desc}</p>
+    <div
+      className=" rounded-lg border p-3 focus-within:border-green-700 hover:cursor-pointer hover:bg-slate-200"
+      onClick={() => {
+        setChosenDay(dayjs(dayHLData.day).date());
+      }}
+    >
+      <p>{dayHLData.day}</p>
+      <p>High: {dayHLData.maxTemp}C</p>
+      <p>Low: {dayHLData.minTemp}C</p>
     </div>
   );
 };

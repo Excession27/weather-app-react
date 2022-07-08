@@ -1,29 +1,26 @@
 import { Dispatch, SetStateAction } from "react";
 
-export interface IContextDataType {
-  city: CoordsDataType;
-  setCity: Dispatch<SetStateAction<CoordsDataType>>;
-  searchCity: string;
-  setSearchCity: Dispatch<SetStateAction<string>>;
-}
-
-export interface ICoordsDataType {
-  city: CoordsDataType;
-  setCity: Dispatch<SetStateAction<CoordsDataType>>;
-}
-
-export type CoordsDataType = {
-  lat: string;
-  lon: string;
+type RainType = {
+  "3h"?: number;
 };
 
-export type CityBaseType = CoordsDataType & {
-  name: string;
-  country: string;
-  state: string;
+type DateTimeType = {
+  dt: EpochTimeStamp;
+  dt_txt: string;
 };
 
-type MainDataType = {
+type CloudsType = {
+  all: number;
+};
+
+type PopType = {
+  pop: number;
+};
+type VisibilityType = {
+  visibility?: number;
+};
+
+export type MainDataType = {
   temp: number;
   feels_like: number;
   temp_min: number;
@@ -67,20 +64,72 @@ type WeatherInfoType = {
   icon: string;
 };
 
-export type CityWeatherDataType = CoordsDataType & {
-  weather: WeatherInfoType[];
-  wind: WindDataType;
-  clouds: {
-    all: number;
+export type dayHLType = { day: string; maxTemp: number; minTemp: number };
+
+export type HourlyDataType = {
+  time: string;
+  img: string;
+  temperature: number;
+  desc: string;
+  windSpeed: number;
+  windDir: number;
+};
+
+export interface ICoordsDataType {
+  city: CoordsDataType;
+  setCity: Dispatch<SetStateAction<CoordsDataType>>;
+}
+
+export type CoordsDataType = {
+  lat: string;
+  lon: string;
+};
+
+export interface IContextDataType {
+  city: CoordsDataType;
+  setCity: Dispatch<SetStateAction<CoordsDataType>>;
+  searchCity: string;
+  setSearchCity: Dispatch<SetStateAction<string>>;
+  chosenDay: number;
+  setChosenDay: Dispatch<SetStateAction<number>>;
+}
+
+export type TempUnitType = {
+  value: number;
+  unit: string;
+};
+
+export type CityWeatherDataType = VisibilityType &
+  CoordsDataType &
+  DateTimeType &
+  PopType & {
+    weather: WeatherInfoType[];
+    wind: WindDataType;
+    clouds: {
+      all: number;
+    };
+    main: MainDataType;
+    id: number;
+    sys: SysDataType;
+    base: string;
+    cod: number;
+    timezone: number;
+    name: string;
   };
-  visibility: number;
-  pop: number;
-  dt: EpochTimeStamp;
-  main: MainDataType;
-  id: number;
-  sys: SysDataType;
-  base: string;
-  cod: number;
-  timezone: number;
+
+export type DailyWeatherType = VisibilityType &
+  RainType &
+  DateTimeType &
+  CloudsType &
+  PopType & {
+    wind: WindDataType;
+    main: MainDataType;
+    weather: WeatherInfoType[];
+    sys: SysDataType;
+  };
+
+export type CityBaseType = CoordsDataType & {
   name: string;
+  country: string;
+  state: string;
 };

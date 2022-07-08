@@ -11,7 +11,7 @@ const Header = () => {
   ) as IContextDataType;
   const [search, setSearch] = useState<string>("");
 
-  const { data: citySearchData, status: searchStatus } = useQuery(
+  const { data: citySearchData } = useQuery(
     ["get-city-weather", searchCity],
     async () => {
       if (searchCity.length >= 2) {
@@ -26,25 +26,27 @@ const Header = () => {
     setSearchCity(debouncedSearch);
   }, [debouncedSearch]);
   const citySearchResults: [] = citySearchData?.data;
-  console.log(citySearchResults);
 
   return (
-    <div className="header">
+    <div className="header text-center">
       <div>
         <h1 className="">Are you under the weather?</h1>
       </div>
 
       {/* Search for a city */}
       <input
+        className=" w-48 rounded bg-slate-400 p-2"
         type="text"
         value={search}
         onChange={(event) => setSearch(event.target.value)}
       />
       {/* Display results and when clicked on one, clear search and set city parametars */}
-      <ul>
+      {/* TODO: Make a dropdown menu to display search results */}
+      <ul className="">
         {citySearchResults?.map((city: CityBaseType, index: number) => (
           <li key={index}>
             <button
+              className="mb-1 rounded bg-emerald-700 py-1 px-1 text-center"
               onClick={() => {
                 setCity({ lat: city.lat, lon: city.lon });
                 setSearch("");

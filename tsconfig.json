@@ -9,7 +9,7 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "commonjs",
+    "module": "esnext",
     "moduleResolution": "nodenext",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -19,12 +19,12 @@
     "rootDir": ".",
     "baseUrl": "src/",
     "paths": {
-      "@component/*": ["component/*"],
+      "component/*": ["component/*"],
       "hooks/*": ["hooks/*"],
       "container/*": ["container/*"],
-      "@httpClient/*": ["httpClient/*"],
+      "httpClient/*": ["httpClient/*"],
       "axios": ["axios/*"],
-      "SearchContextProvider": ["hoc/SearchContextProvider"]
+      "hoc/*": ["hoc/*"]
     }
   },
   "include": ["src"]
