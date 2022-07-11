@@ -23,8 +23,7 @@ const HourlyList = ({ perDayData, chosenDay }: Props) => {
             img={day.weather[0].icon}
             temperature={day.main.temp}
             desc={day.weather[0].description}
-            windSpeed={day.wind.speed}
-            windDir={day.wind.deg}
+            wind={day.wind}
           />
         ))}
     </div>

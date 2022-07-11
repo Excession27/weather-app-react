@@ -51,7 +51,7 @@ type SysDataType = {
   sunset: EpochTimeStamp;
 };
 
-type WindDataType = {
+export type WindDataType = {
   speed: number;
   deg: number;
   gust?: number;
@@ -71,8 +71,7 @@ export type HourlyDataType = {
   img: string;
   temperature: number;
   desc: string;
-  windSpeed: number;
-  windDir: number;
+  wind: WindDataType;
 };
 
 export interface ICoordsDataType {

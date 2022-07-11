@@ -1,6 +1,7 @@
 import useWindDir from "hooks/useWindDir";
 import React from "react";
 import { CityWeatherDataType } from "types";
+import WindDisplay from "./WindDisplay";
 
 const CityInfo = ({ data }: { data: CityWeatherDataType }) => {
   return (
@@ -26,10 +27,7 @@ const CityInfo = ({ data }: { data: CityWeatherDataType }) => {
       </p>
       <div className="additional-data">
         <p className="feels">Feels like {data?.main.feels_like}</p>
-        <div className="wind flex">
-          <p>Wind:</p> <i>{useWindDir(data?.wind.deg)}</i>{" "}
-          <p>{data?.wind.speed} m/s</p>
-        </div>
+        <WindDisplay wind={data?.wind} />
         <p className="visi">Visibility {data?.visibility} km</p>
         <p className="pressure">Barometer {data?.main.pressure} mb</p>
         <p className="humi">Humidity {data?.main.humidity}%</p>
