@@ -1,4 +1,3 @@
-import useWindDir from "hooks/useWindDir";
 import React, { FC } from "react";
 import { HourlyDataType } from "types";
 import WindDisplay from "./WindDisplay";

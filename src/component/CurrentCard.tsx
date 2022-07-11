@@ -1,4 +1,3 @@
-import useWindDir from "hooks/useWindDir";
 import React from "react";
 import { CityWeatherDataType } from "types";
 import WindDisplay from "./WindDisplay";
