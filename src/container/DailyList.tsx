@@ -71,12 +71,12 @@ const DailyList = () => {
 
   return (
     <div className="daily flex-col">
-      <div className="flex gap-2">
+      <div className="flex flex-wrap justify-center gap-2">
         {dailyHighLowData?.map((dayHLData: dayHLType, index: number) => (
           <DailyCard key={index} dayHLData={dayHLData} />
         ))}
       </div>
-      <div className="flex">
+      <div className="flex justify-center">
         <HourlyList perDayData={perDayData} chosenDay={chosenDay} />
       </div>
     </div>

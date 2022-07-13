@@ -10,21 +10,14 @@ type Props = {
 
 const HourlyList = ({ perDayData, chosenDay }: Props) => {
   return (
-    <div className="flex gap-3 p-3">
+    <div className="flex flex-wrap justify-around gap-3 p-3">
       {perDayData
         ?.filter(
           (day: DailyWeatherType[]) =>
             dayjs(day[0].dt_txt.split(" ")[0]).date() === chosenDay
         )[0]
-        ?.map((day: DailyWeatherType, index: number) => (
-          <HourlyCard
-            key={index}
-            time={day.dt_txt.split(" ")[1].slice(0, 5)}
-            img={day.weather[0].icon}
-            temperature={day.main.temp}
-            desc={day.weather[0].description}
-            wind={day.wind}
-          />
+        ?.map((day: any, index: number) => (
+          <HourlyCard key={index} data={day} />
         ))}
     </div>
   );
