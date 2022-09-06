@@ -70,8 +70,8 @@ const DailyList = () => {
   //console.log(now.toJSON());
 
   return (
-    <div className="daily flex-col">
-      <div className="flex flex-wrap justify-center gap-2">
+    <div className="daily  flex-col p-4">
+      <div className="dailycardlist flex flex-wrap justify-center gap-2">
         {dailyHighLowData?.map((dayHLData: dayHLType, index: number) => (
           <DailyCard key={index} dayHLData={dayHLData} />
         ))}

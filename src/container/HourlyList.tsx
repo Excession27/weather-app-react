@@ -10,7 +10,7 @@ type Props = {
 
 const HourlyList = ({ perDayData, chosenDay }: Props) => {
   return (
-    <div className="flex flex-wrap justify-around gap-3 p-3">
+    <div className="flex flex-wrap justify-around gap-3 pt-3">
       {perDayData
         ?.filter(
           (day: DailyWeatherType[]) =>
