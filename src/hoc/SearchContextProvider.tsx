@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import React, { createContext, useState } from "react";
-import { IContextDataType, CoordsDataType, ICoordsDataType } from "types";
+import { IContextDataType } from "types";
 
 export const SearchContext = createContext<IContextDataType | null>(null);
 // export const SearchContext = createContext<any>(null);
